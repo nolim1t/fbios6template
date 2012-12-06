@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+
 @interface ViewController : UIViewController
 
 @property (nonatomic, strong) AppDelegate *appdelegate;

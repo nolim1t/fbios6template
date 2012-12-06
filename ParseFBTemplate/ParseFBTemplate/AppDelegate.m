@@ -15,6 +15,15 @@
 {
     // Override point for customization after application launch.
     session = [[FBSession alloc] init];
+    // ****************************************************************************
+    // Uncomment and fill in with your Parse credentials:
+    [Parse setApplicationId:@"" clientKey:@""];
+    //
+    // If you are using Facebook, uncomment and fill in with your Facebook App Id:
+    [PFFacebookUtils initializeWithApplicationId:@""];
+    
+    [PFUser enableAutomaticUser];
+    // ****************************************************************************
     return YES;
 }
 							
