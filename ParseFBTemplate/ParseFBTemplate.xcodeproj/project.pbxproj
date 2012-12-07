@@ -69,6 +69,7 @@
 		1C339D1A167005FA00068270 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		1C339D1C1670060800068270 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		1C339D1E1670063100068270 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1CFEDD5016717374002AB18D /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +148,7 @@
 		1C339CCF166FFEB800068270 /* ParseFBTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1CFEDD4E16717351002AB18D /* Config */,
 				1C339CD8166FFEB800068270 /* AppDelegate.h */,
 				1C339CD9166FFEB800068270 /* AppDelegate.m */,
 				1C339CE1166FFEB800068270 /* MainStoryboard.storyboard */,
@@ -169,6 +171,14 @@
 				1C339CDF166FFEB800068270 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CFEDD4E16717351002AB18D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				1CFEDD5016717374002AB18D /* AppConstants.h */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +376,7 @@
 				1C339CEB166FFEB900068270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

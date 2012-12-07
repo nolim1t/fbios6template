@@ -1,0 +1,5 @@
+// App Configuration
+
+#define kParseAppId @"Your-App-Id"
+#define kParseClientKey @"Your-Client-Key"
+#define kFacebookAppId @"Your-Facebook-App-Id"
