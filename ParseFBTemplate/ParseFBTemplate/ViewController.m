@@ -36,10 +36,21 @@
                                       NSLog(@"Session: %@", [session debugDescription]);
                                       if (status == FBSessionStateOpen) {
                                           // Current access token
-                                           NSLog(@"Access Token = %@", [[FBSession activeSession] accessToken]);
-                                          // Announce the log in (or do something)
+                                           NSLog(@"Access Token = %@", [session accessToken]);
+                                          // Announce the log in (or do something));
                                           UIAlertView *okSuccess = [[UIAlertView alloc] initWithTitle:@"Logged in" message:@"Logged in successfully" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
                                           [okSuccess show];
+                                          [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error){
+                                              [PFFacebookUtils logInWithFacebookId:[user id] accessToken:[session accessToken] expirationDate:[session expirationDate] block:^(PFUser *user, NSError *error){
+                                                  if (!error) {
+                                                      // Successfully log in
+                                                      NSLog(@"User Info: %@", [user debugDescription]);
+                                                  } else {
+                                                      // Failed log in
+                                                      NSLog(@"Error: %@", [error debugDescription]);
+                                                  }
+                                              }];
+                                          }];
                                       } else if (status  == FBSessionStateClosedLoginFailed) {
                                           UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Log in Failed" message:@"Log in failed, please check that you have given permissions to Facebook in settings or restrictions" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
                                           [errorMsg show];

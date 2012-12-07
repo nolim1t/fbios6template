@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "AppConstants.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

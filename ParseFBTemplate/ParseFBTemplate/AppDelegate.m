@@ -17,12 +17,11 @@
     session = [[FBSession alloc] init];
     // ****************************************************************************
     // Uncomment and fill in with your Parse credentials:
-    [Parse setApplicationId:@"" clientKey:@""];
+    [Parse setApplicationId:kParseAppId clientKey:kParseClientKey];
     //
     // If you are using Facebook, uncomment and fill in with your Facebook App Id:
-    [PFFacebookUtils initializeWithApplicationId:@""];
+    [PFFacebookUtils initializeWithApplicationId:kFacebookAppId];
     
-    [PFUser enableAutomaticUser];
     // ****************************************************************************
     return YES;
 }
