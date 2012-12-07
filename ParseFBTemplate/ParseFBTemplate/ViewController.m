@@ -41,18 +41,24 @@
                                           UIAlertView *okSuccess = [[UIAlertView alloc] initWithTitle:@"Logged in" message:@"Logged in successfully" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
                                           [okSuccess show];
                                           [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error){
-                                              [PFFacebookUtils logInWithFacebookId:[user id] accessToken:[session accessToken] expirationDate:[session expirationDate] block:^(PFUser *user, NSError *error){
-                                                  if (!error) {
-                                                      // Successfully log in
-                                                      NSLog(@"User Info: %@", [user debugDescription]);
-                                                  } else {
-                                                      // Failed log in
-                                                      NSLog(@"Error: %@", [error debugDescription]);
-                                                  }
-                                              }];
+                                              if (!error) {
+                                                  [PFFacebookUtils logInWithFacebookId:[user id] accessToken:[session accessToken] expirationDate:[session expirationDate] block:^(PFUser *user, NSError *error){
+                                                      if (!error) {
+                                                          // Successfully log in
+                                                          NSLog(@"User Info: %@", [user debugDescription]);
+                                                      } else {
+                                                          NSLog(@"Error: %@", [error debugDescription]);
+                                                      }
+                                                  }];
+                                              } else {
+                                                  // Error user remove application
+                                                  // TODO: Check for "com.facebook.sdk:HTTPStatusCode" in the userInfo dictionary = 400
+                                                  // Alternatively you can make the user restart
+                                                  NSLog(@"Error: %@", [[error userInfo] debugDescription]);
+                                              }
                                           }];
                                       } else if (status  == FBSessionStateClosedLoginFailed) {
-                                          UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Log in Failed" message:@"Log in failed, please check that you have given permissions to Facebook in settings or restrictions" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+                                          UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Log in Failed" message:@"You have either denied permissions in the past or have application restrictions for Facebook switched on" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
                                           [errorMsg show];
                                       }
                                   }];
