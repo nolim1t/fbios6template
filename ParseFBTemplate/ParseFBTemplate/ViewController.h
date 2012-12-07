@@ -13,6 +13,9 @@
 @interface ViewController : UIViewController
 
 @property (nonatomic, strong) AppDelegate *appdelegate;
+@property (nonatomic, strong) IBOutlet UIButton *loginButton;
 
 -(IBAction)btnLogin:(id)sender;
+-(void) beginLoginProcess;
+-(void) resetLoginProcess;
 @end

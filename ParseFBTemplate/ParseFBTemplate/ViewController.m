@@ -14,14 +14,27 @@
 
 @implementation ViewController
 @synthesize appdelegate;
+@synthesize loginButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self resetLoginProcess];
+}
+
+-(void) beginLoginProcess {
+    // Set up UI so that you have tapped the login button
+    loginButton.enabled = NO; // Disable login button
+}
+-(void) resetLoginProcess {
+    // Set up UI so you can login again
+    loginButton.enabled = YES;
 }
 
 -(IBAction)btnLogin:(id)sender {
+    [self beginLoginProcess];
     // Permissions
     NSArray *permissions =
     [NSArray arrayWithObjects:@"email", nil];
@@ -45,14 +58,17 @@
                                                           //NSLog(@"User Info: %@", [user debugDescription]);
                                                           appdelegate.loggedInUser = puser;
                                                           [puser setEmail:[user objectForKey:@"email"]];
+                                                          [puser setObject:[user objectForKey:@"id"] forKey:@"fbid"];
                                                           [puser saveInBackground];
                                                           [self performSegueWithIdentifier:@"LoginSegue" sender:self];
                                                       } else {
+                                                          [self resetLoginProcess];
                                                           // Unspecified error
                                                           NSLog(@"Error: %@", [error debugDescription]);
                                                       }
                                                   }];
                                               } else {
+                                                  [self resetLoginProcess];
                                                   // Error because the user removed application
                                                   // TODO: Check for "com.facebook.sdk:HTTPStatusCode" in the userInfo dictionary = 400
                                                   // Alternatively you can make the user restart
@@ -60,6 +76,7 @@
                                               }
                                           }];
                                       } else if (status  == FBSessionStateClosedLoginFailed) {
+                                          [self resetLoginProcess];
                                           // Error because the user defined the permissions
                                           UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Log in Failed" message:@"You have either denied permissions in the past or have application restrictions for Facebook switched on" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
                                           [errorMsg show];
