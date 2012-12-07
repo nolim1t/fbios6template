@@ -35,29 +35,32 @@
                                       NSLog(@"Error: %@", [error debugDescription]);
                                       NSLog(@"Session: %@", [session debugDescription]);
                                       if (status == FBSessionStateOpen) {
-                                          // Current access token
-                                           NSLog(@"Access Token = %@", [session accessToken]);
-                                          // Announce the log in (or do something));
-                                          UIAlertView *okSuccess = [[UIAlertView alloc] initWithTitle:@"Logged in" message:@"Logged in successfully" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-                                          [okSuccess show];
+                                          // Parse needs an ID
                                           [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error){
                                               if (!error) {
-                                                  [PFFacebookUtils logInWithFacebookId:[user id] accessToken:[session accessToken] expirationDate:[session expirationDate] block:^(PFUser *user, NSError *error){
+                                                  // Use access token to sign into parse (or create account
+                                                  [PFFacebookUtils logInWithFacebookId:[user id] accessToken:[session accessToken] expirationDate:[session expirationDate] block:^(PFUser *puser, NSError *error){
                                                       if (!error) {
                                                           // Successfully log in
-                                                          NSLog(@"User Info: %@", [user debugDescription]);
+                                                          //NSLog(@"User Info: %@", [user debugDescription]);
+                                                          appdelegate.loggedInUser = puser;
+                                                          [puser setEmail:[user objectForKey:@"email"]];
+                                                          [puser saveInBackground];
+                                                          [self performSegueWithIdentifier:@"LoginSegue" sender:self];
                                                       } else {
+                                                          // Unspecified error
                                                           NSLog(@"Error: %@", [error debugDescription]);
                                                       }
                                                   }];
                                               } else {
-                                                  // Error user remove application
+                                                  // Error because the user removed application
                                                   // TODO: Check for "com.facebook.sdk:HTTPStatusCode" in the userInfo dictionary = 400
                                                   // Alternatively you can make the user restart
                                                   NSLog(@"Error: %@", [[error userInfo] debugDescription]);
                                               }
                                           }];
                                       } else if (status  == FBSessionStateClosedLoginFailed) {
+                                          // Error because the user defined the permissions
                                           UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Log in Failed" message:@"You have either denied permissions in the past or have application restrictions for Facebook switched on" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
                                           [errorMsg show];
                                       }

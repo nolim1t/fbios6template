@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
-@synthesize session;
+@synthesize session, loggedInUser;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

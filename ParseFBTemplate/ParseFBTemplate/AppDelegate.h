@@ -13,6 +13,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) PFUser *loggedInUser;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) FBSession *session;
 
