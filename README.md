@@ -7,10 +7,11 @@ The idea is to sign into FB using the iOS 6 SDK and then move the access token t
 ## Steps ##
 1. Do a shallow clone of this project
 2. Create facebook app ID on facebook developers site
-3. Change app ID in configuration
-4. Add your code in
-5. ???
-6. Profit!
+3. Rename AppConstants.h-dist to AppConstants.h
+4. Add all the relevant application ids into configuration (AppConstants.h)
+5. Add your code in
+6. ???
+7. Profit!
 
 ## TODO ##
 Everything ;-)
