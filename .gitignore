@@ -29,4 +29,4 @@ xcuserdata
 
 *.moved-aside
 
-ParseFBTemplate/ParseFBTemplate/AppConstants.h
+*AppConstants.*

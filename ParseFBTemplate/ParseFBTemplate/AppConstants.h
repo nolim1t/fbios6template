@@ -1,13 +1,5 @@
-//
-//  AppConstants.h
-//  ParseFBTemplate
-//
-//  Created by Barry Teoh on 12/7/12.
-//  Copyright (c) 2012 perceptionz.net. All rights reserved.
-//
+// App Configuration
 
-#import <Foundation/Foundation.h>
-
-@interface AppConstants : NSObject
-
-@end
+#define kParseAppId @"EkTvECsuMqL50QnZErbyOC7kRohZsqjtgelFGNe1"
+#define kParseClientKey @"E9dWecXT6QFszEwZlYZ4qQIvYGp3kbtP1hr2tILH"
+#define kFacebookAppId @"251996114837587"
