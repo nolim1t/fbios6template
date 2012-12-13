@@ -63,8 +63,10 @@
                                                           [self performSegueWithIdentifier:@"LoginSegue" sender:self];
                                                       } else {
                                                           [self resetLoginProcess];
+                                                          UIAlertView *parseError = [[UIAlertView alloc] initWithTitle:@"Server error" message:@"An unexpected error has occured. Please try again later" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                                                          [parseError show];
                                                           // Unspecified error
-                                                          NSLog(@"Error: %@", [error debugDescription]);
+                                                          NSLog(@"Error: %@", [[error userInfo] debugDescription]);
                                                       }
                                                   }];
                                               } else {
